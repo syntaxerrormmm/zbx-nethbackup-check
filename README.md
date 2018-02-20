@@ -28,7 +28,7 @@ following inside your local working directory:
 install -m 0755 -o root -g root nethbackup_check.py \
   /usr/local/bin/nethbackup_check.py
 install -m 0644 -o root -g root userparameter_nethserver.conf \
-  /etc/zabbix/zabbix_agent.d/userparameter_nethserver.conf
+  /etc/zabbix/zabbix_agentd.d/userparameter_nethserver.conf
 systemctl restart zabbix-agent
 ```
 
