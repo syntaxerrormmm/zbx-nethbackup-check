@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>4.0</version>
+    <version>3.0</version>
     <date>2020-04-08T19:45:42Z</date>
     <groups>
-        <group>
-            <name>BgWorld Templates</name>
-        </group>
         <group>
             <name>Templates</name>
         </group>
     </groups>
     <templates>
         <template>
-            <template>BGW - Bak - Multiple NethServer Backups</template>
-            <name>BGW - Bak - Multiple NethServer Backups</name>
+            <template>Bak - Multiple NethServer Backups</template>
+            <name>Bak - Multiple NethServer Backups</name>
             <description/>
             <groups>
-                <group>
-                    <name>BgWorld Templates</name>
-                </group>
                 <group>
                     <name>Templates</name>
                 </group>
@@ -127,7 +121,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{BGW - Bak - Multiple NethServer Backups:nethserver.backup[{#NSBACKUP},{$NSBAKVALIDITY}].last()}=0</expression>
+                            <expression>{Bak - Multiple NethServer Backups:nethserver.backup[{#NSBACKUP},{$NSBAKVALIDITY}].last()}=0</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>{HOST.NAME} - NethServer Backup {#NSBACKUP} is not valid</name>
