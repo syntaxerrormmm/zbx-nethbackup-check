@@ -23,7 +23,7 @@ installed on *any* machines that need to be checked.
 ### On the host to be monitored ###
 
 I've created a small rpm package ready to be deployed, please check out the
-[Releases](./releases) section. Deploy it like:
+[Releases](/releases) section. Deploy it like:
 
     yum -y install nethserver-zabbix-agent-checks-1.0.0-1.ns7.noarch.rpm
 
