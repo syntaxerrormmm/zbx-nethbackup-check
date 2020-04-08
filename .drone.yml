@@ -1,0 +1,16 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: build
+    image: registry.libreschool.org/libreschool-automation/rpm-build:7
+    pull: always
+    commands:
+      - yum -y install rpmlint
+      - yum-builddep -y nethserver-zabbix-agent-checks.spec
+      - rpmbuild -ba nethserver-zabbix-agent-checks.spec
+      - rpmlint noarch/*.rpm
+      - rm -rf out
+      - mkdir out ; mv *.rpm noarch/*.rpm out/
+      - chown -R 1000:1000 out
+      - rm -rf BUILDROOT noarch
