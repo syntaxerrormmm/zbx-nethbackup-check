@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-01-07T21:31:18Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+        <group>
+            <name>Templates/Applications</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Bak - Multiple Nethserver Backup</template>
+            <name>Bak - Multiple Nethserver Backup</name>
+            <description>Monitors the backups made inside NethServer with internal tooling.</description>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+                <group>
+                    <name>Templates/Applications</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Backups</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Backup items</name>
+                    <key>nethserver.backup.discovery</key>
+                    <delay>1h</delay>
+                    <description>Discover all the backup items configured on the system and verifies its validy on standard base.</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Backup &quot;{#NSBACKUP}&quot; validity</name>
+                            <key>nethserver.backup[{#NSBACKUP},{$NSBAKVALIDITY}]</key>
+                            <delay>0;h9,14</delay>
+                            <description>Checks if the last backup is valid (is successful and was done at least {$NSBAKVALIDITY} days ago).</description>
+                            <applications>
+                                <application>
+                                    <name>Backups</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>Backup status</name>
+                            </valuemap>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}=0</expression>
+                                    <name>NethServer Backup {#NSBACKUP} is not valid</name>
+                                    <priority>HIGH</priority>
+                                    <description>Notifies if the last backup is not valid (is not successful or is not done in the last {$NSBAKVALIDITY} days).</description>
+                                    <tags>
+                                        <tag>
+                                            <tag>Backup</tag>
+                                            <value>failed</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Backup.Frequency</tag>
+                                            <value>{$NSBAKVALIDITY}</value>
+                                        </tag>
+                                        <tag>
+                                            <tag>Backup.Type</tag>
+                                            <value>NethServer</value>
+                                        </tag>
+                                    </tags>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{$NSBAKVALIDITY}</macro>
+                    <value>1</value>
+                    <description>Validity of the backup in days</description>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+    <value_maps>
+        <value_map>
+            <name>Backup status</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>Not OK</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>OK</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
+</zabbix_export>
