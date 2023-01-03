@@ -1,5 +1,5 @@
 NAME := nethserver-zabbix-agent-checks
-VER := 1.0.0
+VER := 1.0.1
 FILES := $(shell cat filelist)
 
 default: build
