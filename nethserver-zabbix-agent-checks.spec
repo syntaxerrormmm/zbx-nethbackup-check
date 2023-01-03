@@ -1,6 +1,6 @@
 Summary: Adds some checks for monitoring NethServer backups via zabbix-agent
 Name: nethserver-zabbix-agent-checks
-Version: 1.0.0
+Version: 1.0.1
 Release: 1.ns7
 License: GPLv3
 BuildArch: noarch
@@ -42,6 +42,9 @@ if [ "$1" = 0 ]; then
 fi
 
 %changelog
+* Wed Jan 04 2023 Emiliano Vavassori <syntaxerrormmm@gmail.com> - 1.0.1-1.ns7
+- Bugfix: script returned syntax error while checking backups.
+
 * Wed Apr 08 2020 Emiliano Vavassori <syntaxerrormmm@gmail.com> - 1.0.0-1.ns7
 - First release for NethServer 7
 

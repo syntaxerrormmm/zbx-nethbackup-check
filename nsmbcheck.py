@@ -107,7 +107,7 @@ class LogCheck:
             self.status = status
 
             # Fixing the date calculation
-            self.datetime = datetime.datetime.strptime(postdate, '%b %d %H:%M:%S')
+            self.datetime = datetime.datetime.strptime(strdatetime, '%Y-%m-%d %H:%M:%S')
             self.datetime = self.datetime.replace(year=datetime.datetime.today().year)
             # If the date results in the future (which is not possible, since
             # we are seeing events in the past), remove 1 year.
