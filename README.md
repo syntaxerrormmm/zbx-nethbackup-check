@@ -22,17 +22,20 @@ installed on *any* machines that need to be checked.
 
 ### On the host to be monitored ###
 
+[![Build Status](https://dgh.sys42.cc/api/badges/syntaxerrormmm/zbx-nethbackup-check/status.svg)](https://dgh.sys42.cc/syntaxerrormmm/zbx-nethbackup-check)
+
 I've created a small rpm package ready to be deployed, please check out the
 [Releases](https://github.com/syntaxerrormmm/zbx-nethbackup-check/releases/) section. Deploy it like:
 
-    yum -y install nethserver-zabbix-agent-checks-1.0.0-1.ns7.noarch.rpm
+    yum -y install nethserver-zabbix-agent-checks-1.0.1-1.ns7.noarch.rpm
 
 Please be aware that the script requires administrator permissions, so
 it is indeed invoked via `sudo`. If you are using another user to run the
-Agent (which you should do, anyways :) ) please adjust `sudo` like follows:
+Agent (which you should do, anyways :) - we suppose you chose `zabbix`) please
+adjust `sudo` like follows:
 
-    echo "youruser ALL=(root) NOPASSWD: /usr/bin/nsmbcheck.py" >> /etc/sudoers.d/youruser
-    chown 0440 /etc/sudoers.d/youruser
+    echo "zabbix ALL=(root) NOPASSWD: /usr/bin/nsmbcheck.py" >> /etc/sudoers.d/youruser
+    chown 0440 /etc/sudoers.d/zabbix
     visudo -c
 
 ### On the Zabbix Server ###
