@@ -15,3 +15,15 @@ steps:
       - mkdir out ; mv *.rpm noarch/*.rpm out/
       - chown -R 1000:1000 out
       - rm -rf BUILDROOT noarch
+
+  - name: github_release
+    image: plugins/github-release
+    pull: always
+    settings:
+      api_key:
+        from_secret: github
+      files: out/*.rpm
+      checksum:
+        - md5
+        - sha256
+      draft: true
