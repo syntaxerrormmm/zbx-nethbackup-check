@@ -1,0 +1,4 @@
+---
+name: Build and release an RPM
+run-name: ${{ github.actor }} is testing GitHub Actions
+on: [ push ]
